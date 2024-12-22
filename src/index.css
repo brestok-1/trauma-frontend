@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.tags-style {
+    @apply text-[#555555] text-sm rounded-md py-0.5 px-3;
+  }
