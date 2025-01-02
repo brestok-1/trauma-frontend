@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .tags-style {
-    @apply text-[#555555] text-sm rounded-md py-0.5 px-3;
-  }
+    @apply text-[#555555] lg:text-sm text-xs rounded-md py-0.5 lg:px-2.5 px-1;
+}

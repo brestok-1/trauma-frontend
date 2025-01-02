@@ -1,15 +1,5 @@
 import { createContext, useContext, useState, FC } from 'react';
-
-interface Message {
-  id: string;
-  text: string;
-  isUser: boolean;
-}
-
-interface ChatContextType {
-  messages: Message[];
-  sendMessage: (text: string) => void;
-}
+import { ChatContextType, Message } from '../types/ChatType';
 
 const ChatContext = createContext<ChatContextType | undefined>(undefined);
 
@@ -19,15 +9,23 @@ export const ChatProvider: FC<{ children: React.ReactNode }> = ({
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque iaculis mi fringilla mauris ornare, in accumsan enim volutpat. Morbi vulputate libero rutrum neque dapibus suscipit. In vehicula, magna vitae ornare aliquam.',
-      isUser: false,
+      chatId: '1',
+      author: 'bot',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Qu',
+      datetimeInserted: new Date().toISOString(),
     },
   ]);
 
   const sendMessage = (text: string) => {
     setMessages((prev) => [
       ...prev,
-      { id: `${prev.length + 1}`, text, isUser: true },
+      {
+        id: `${prev.length + 1}`,
+        chatId: '1',
+        author: 'user',
+        text,
+        datetimeInserted: new Date().toISOString(),
+      },
     ]);
   };
 
@@ -38,6 +36,8 @@ export const ChatProvider: FC<{ children: React.ReactNode }> = ({
   );
 };
 
+
+// eslint-disable-next-line react-refresh/only-export-components
 export const useChat = (): ChatContextType => {
   const context = useContext(ChatContext);
   if (!context) {

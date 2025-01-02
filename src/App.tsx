@@ -5,9 +5,7 @@ import ChatPage from './pages/ChatPage';
 function App() {
   return (
     <ChatProvider>
-      <div>
         <ChatPage />
-      </div>
     </ChatProvider>
   );
 }

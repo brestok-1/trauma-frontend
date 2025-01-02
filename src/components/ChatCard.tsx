@@ -1,10 +1,10 @@
 const ChatCard = () => {
   return (
-    <div className="bg-light_gray border border-border_color rounded-3xl w-1/4 p-4">
-      <p className="text-header_color font-bold text-start text-xl">
+    <div className="bg-light_gray border border-border_color rounded-3xl w-fit lg:p-4 px-2 py-4">
+      <p className="text-header_color font-bold text-start lg:text-xl text-lg mb-2">
         Trauma Clinic XYZ
       </p>
-      <p className="text-[16px] text-start font-normal text-header_color">Psychotherapy Clinic, <br/> Haarlem</p>
+      <p className="lg:text-[16px] text-xs text-start font-normal text-header_color mb-2">Psychotherapy Clinic, <br/> Haarlem</p>
       <div className="flex flex-col gap-2">
         <div className="flex flex-wrap gap-2">
           <span className="tags-style bg-dark_gray">
