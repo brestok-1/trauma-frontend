@@ -1,38 +1,37 @@
 export interface Message {
-  id: string;
-  chatId: string;
-  author: 'user' | 'bot';
-  text: string;
-  datetimeInserted: string;
-  datetimeUpdated?: string;
+   id: string;
+   chatId: string;
+   author: "user" | "bot";
+   text: string;
+   datetimeInserted: string;
+   datetimeUpdated?: string;
 }
 
 export interface ChatContextType {
-  messages: Message[];
-  sendMessage: (text: string) => void;
+   messages: Message[];
+   entities: Entity[];
+   sendMessage: (text: string) => void;
+   resetChat: () => void;
 }
 
 export interface AgeGroup {
-  ageMin: number;
-  ageMax: number;
+   ageMin: number;
+   ageMax: number;
 }
 
 export interface ContactDetails {
-  phone: string;
-  email: string;
-  website: string;
-  address: string;
-  postalCode: string;
+   phone: string | null;
+   email: string | null;
+   website: string | null;
+   address: string | null;
+   postalCode: string | null;
 }
 
 export interface Entity {
-  id: string;
-  name: string;
-  ageGroups: AgeGroup[];
-  treatmentAreas: string[];
-  treatmentMethods: string[];
-  contactDetails: ContactDetails;
+   id: string;
+   name: string;
+   ageGroups: AgeGroup[];
+   treatmentAreas: string[];
+   treatmentMethods: string[];
+   contactDetails: ContactDetails;
 }
-
-
-
