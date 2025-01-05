@@ -9,7 +9,7 @@ const defaultMessage: Message = {
    id: "1",
    chatId: "",
    author: "bot",
-   text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Qu",
+   text: "Hello! I will help you find a clinic that meets all your needs.", //Hallo! Ik help u een kliniek te vinden die aan al uw eisen voldoet.
    datetimeInserted: new Date().toISOString(),
 };
 
@@ -102,10 +102,9 @@ export const ChatProvider: FC<{ children: React.ReactNode }> = ({
    };
 
    const resetChat = () => {
-      // setMessages([defaultMessage]);
-      // setChatId('');
-      // setEntities([]);
-      console.log(entities);
+      setMessages([defaultMessage]);
+      setChatId('');
+      setEntities([]);
    };
 
    return (

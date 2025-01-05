@@ -11,6 +11,24 @@ import { Entity } from "../types/ChatType";
 const ChatPage = () => {
    const { entities } = useChat();
    const [selectedEntity, setSelectedEntity] = useState<Entity | null>(null);
+   const [showDescription, setShowDescription] = useState<boolean>(false);
+
+   const handleCardClick = (item: Entity) => {
+      if (selectedEntity === item) {
+         setShowDescription(!showDescription); 
+      } else {
+         setSelectedEntity(item);
+         setShowDescription(true);
+      }
+   };
+
+   const handleDescriptionClick = () => {
+      setShowDescription(false); 
+      setSelectedEntity(null); 
+   };
+
+   const filteredEntities = entities.filter((item) => item !== selectedEntity);
+
    return (
       <div className="h-full md:max-w-[80%] lg:max-w-[70%] xl:max-w-[60%] w-full mx-auto py-10 font-inter">
          <div className="text-start">
@@ -30,18 +48,23 @@ const ChatPage = () => {
          </div>
          <div className="flex flex-col gap-y-10">
             <ChatPanel />
+            {showDescription && selectedEntity && (
+               <div onClick={handleDescriptionClick}>
+                  <ChatDescription item={selectedEntity} />
+               </div>
+            )}
             <ChatCardList
-               items={entities}
+               items={filteredEntities}
                renderItem={(item) => (
                   <div
-                     onClick={() => setSelectedEntity(item)}
+                     key={item.id} 
+                     onClick={() => handleCardClick(item)}
                      className="cursor-pointer"
                   >
                      <ChatCard item={item} />
                   </div>
                )}
             />
-            {selectedEntity && <ChatDescription item={selectedEntity} />}
             <ChatInput />
          </div>
       </div>

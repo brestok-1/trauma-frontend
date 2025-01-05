@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useChat } from '../../context/ChatContext';
 import Doctor from '../../assets/images/Doctor.png';
+import ReactMarkdown from 'react-markdown';
 
 const ChatMessages: React.FC = () => {
   const { messages } = useChat();
 
+  const chatEndRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (chatEndRef.current) {
+      chatEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages]); 
+
   return (
-    <div className="flex flex-col gap-6 lg:text-[16px] text-sm leading-7 overflow-y-auto max-h-[700px] w-full ">
+    <div className="flex flex-col gap-6 lg:text-[16px] text-sm leading-7 overflow-y-auto max-h-[700px] w-full pr-2">
       {messages.map((message) => (
         <div
           key={message.id}
@@ -23,17 +32,28 @@ const ChatMessages: React.FC = () => {
               />
             </div>
           )}
-          <div
-            className={`p-4 text-start border border-border_color ${
+           <div
+            className={`p-5 text-start border border-border_color ${
               message.author === 'user'
                 ? 'bg-light_gray w-fit max-w-full lg:max-w-[75%] break-words overflow-wrap overflow-hidden'
-                : 'bg-white flex-1 max-w-full break-words overflow-wrap overflow-hidden'
+                : 'bg-white w-auto max-w-full break-words overflow-wrap overflow-hidden'
+            } ${
+              message.text === '...' ? 'rounded-lg' : 'rounded-none'
             }`}
           >
-            {message.text}
+             {message.text === "..." ? (
+              <div className="typing-indicator flex gap-1">
+                <span className="dot"></span>
+                <span className="dot"></span>
+                <span className="dot"></span>
+              </div>
+            ) : (
+              <ReactMarkdown>{message.text}</ReactMarkdown>
+            )}
           </div>
         </div>
       ))}
+      <div ref={chatEndRef} />
     </div>
   );
 };

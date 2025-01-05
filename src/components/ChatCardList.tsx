@@ -1,13 +1,15 @@
 interface ChatCardListProps<T> {
-   items: T[];
+   items: T[]; 
    renderItem: (item: T, index: number) => React.ReactNode;
 }
 
 function ChatCardList<T>({ items, renderItem }: ChatCardListProps<T>) {
    return (
-      <div className="flex gap-x-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
          {items.map((item, index) => (
-            <div key={index}>{renderItem(item, index)}</div>
+            <div key={index} className="flex items-stretch h-full">
+               {renderItem(item, index)}
+            </div>
          ))}
       </div>
    );
