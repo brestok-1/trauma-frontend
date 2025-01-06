@@ -9,9 +9,8 @@ import { useState } from "react";
 import { Entity } from "../types/ChatType";
 
 const ChatPage = () => {
-   const { entities } = useChat();
+   const { entities, showDescription, setShowDescription } = useChat();
    const [selectedEntity, setSelectedEntity] = useState<Entity | null>(null);
-   const [showDescription, setShowDescription] = useState<boolean>(false);
 
    const handleCardClick = (item: Entity) => {
       if (selectedEntity === item) {
@@ -30,7 +29,7 @@ const ChatPage = () => {
    const filteredEntities = entities.filter((item) => item !== selectedEntity);
 
    return (
-      <div className="h-full md:max-w-[80%] lg:max-w-[70%] xl:max-w-[60%] w-full mx-auto py-10 font-inter">
+      <div className="h-full md:max-w-[80%] lg:max-w-[70%] xl:max-w-[60%] w-full mx-auto py-10">
          <div className="text-start">
             <div className="w-24 h-24 bg-light_gray rounded-lg border border-border_color mb-7">
                <img
@@ -39,10 +38,10 @@ const ChatPage = () => {
                   alt="Doctor"
                />
             </div>
-            <p className="lg:text-4xl text-3xl text-[#666666] font-light">
+            <p className="lg:text-4xl text-3xl text-[#666666] font-thin">
                Hoi, ik ben [NAAM]
             </p>
-            <p className="lg:text-5xl text-4xl py-2 text-transparent bg-clip-text bg-text-gradient font-bold mb-10">
+            <p className="lg:text-5xl text-4xl py-2 text-transparent bg-clip-text bg-text-gradient font-extrabold mb-10">
                Hoe kan ik u vandaag helpen?
             </p>
          </div>

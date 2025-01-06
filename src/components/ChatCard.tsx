@@ -14,7 +14,7 @@ const ChatCard: React.FC<ChatCardProps> = ({ item }) => {
          <p className="lg:text-[16px] text-xs text-start font-normal text-header_color mb-2">
             Psychotherapy Clinic, <br /> Haarlem
          </p>
-         <div className="flex flex-col gap-2">
+         <div className="flex flex-col gap-2 ">
             <div className="flex flex-wrap gap-2">
                {item.ageGroups.length > 0 && (
                   <span className="tags-style bg-dark_gray text-start">

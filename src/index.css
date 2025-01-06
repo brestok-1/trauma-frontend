@@ -3,46 +3,71 @@
 @tailwind utilities;
 
 .tags-style {
-    @apply text-[#555555] lg:text-sm text-xs rounded-md py-0.5 lg:px-2 px-1;
+   @apply text-[#555555] lg:text-sm text-xs rounded-md py-0.5 lg:px-2 px-1;
 }
 
 @keyframes bounce {
-    0%, 100% {
+   0%,
+   100% {
       transform: translateY(0);
-    }
-    20% {
-      transform: translateY(-8px); 
-    }
-    60% {
-      transform: translateY(0); 
-    }
-  }
-  
-  .typing-indicator {
-    display: flex;
-    gap: 5px;
-    align-items: center;
-    justify-content: start;
-  }
-  
-  .typing-indicator span {
-    width: 8px;
-    height: 8px;
-    background-color: #7d7c7c;
-    border-radius: 50%;
-    animation: bounce 1.4s infinite; 
-    animation-timing-function: ease-in-out; 
-  }
-  
-  .typing-indicator span:nth-child(1) {
-    animation-delay: 0s;
-  }
-  
-  .typing-indicator span:nth-child(2) {
-    animation-delay: 0.3s; 
-  }
-  
-  .typing-indicator span:nth-child(3) {
-    animation-delay: 0.6s;
-  }
-  
+   }
+   20% {
+      transform: translateY(-8px);
+   }
+   60% {
+      transform: translateY(0);
+   }
+}
+
+.typing-indicator {
+   display: flex;
+   gap: 5px;
+   align-items: center;
+   justify-content: start;
+}
+
+.typing-indicator span {
+   width: 8px;
+   height: 8px;
+   background-color: #7d7c7c;
+   border-radius: 50%;
+   animation: bounce 1.4s infinite;
+   animation-timing-function: ease-in-out;
+}
+
+.typing-indicator span:nth-child(1) {
+   animation-delay: 0s;
+}
+
+.typing-indicator span:nth-child(2) {
+   animation-delay: 0.3s;
+}
+
+.typing-indicator span:nth-child(3) {
+   animation-delay: 0.6s;
+}
+
+@font-face {
+   font-family: "Satoshi"; 
+   src: url("./assets/fonts/Satoshi-Variable.ttf") format("truetype");
+   font-weight: normal;
+   font-style: normal;
+}
+
+@font-face {
+   font-family: "Satoshi"; 
+   src: url("./assets/fonts/Satoshi-Variable.ttf") format("truetype");
+   font-weight: 200;
+   font-style: normal;
+}
+
+@font-face {
+   font-family: "Satoshi"; 
+   src: url("./assets/fonts/Satoshi-Variable.ttf") format("truetype");
+   font-weight: bold;
+   font-style: normal;
+}
+
+body {
+   font-family: "Satoshi", sans-serif;
+}

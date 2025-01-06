@@ -19,7 +19,9 @@ export const ChatProvider: FC<{ children: React.ReactNode }> = ({
    const [chatId, setChatId] = useState<string>("");
    const [messages, setMessages] = useState<Message[]>([defaultMessage]);
    const [entities, setEntities] = useState<Entity[]>([]);
+   const [showDescription, setShowDescription] = useState<boolean>(false);
 
+   
    const createChat = async (): Promise<string> => {
       try {
          const chatData: CreateChatResponse = await createChatRequest();
@@ -105,11 +107,12 @@ export const ChatProvider: FC<{ children: React.ReactNode }> = ({
       setMessages([defaultMessage]);
       setChatId('');
       setEntities([]);
+      setShowDescription(false);
    };
 
    return (
       <ChatContext.Provider
-         value={{ messages, entities, sendMessage, resetChat }}
+         value={{ messages, entities, sendMessage, resetChat, showDescription, setShowDescription }}
       >
          {children}
       </ChatContext.Provider>

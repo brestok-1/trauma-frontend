@@ -12,6 +12,8 @@ export interface ChatContextType {
    entities: Entity[];
    sendMessage: (text: string) => void;
    resetChat: () => void;
+   showDescription: boolean;
+   setShowDescription: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface AgeGroup {
