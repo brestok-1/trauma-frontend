@@ -36,4 +36,5 @@ export interface Entity {
    treatmentAreas: string[];
    treatmentMethods: string[];
    contactDetails: ContactDetails;
+   description: string;
 }
