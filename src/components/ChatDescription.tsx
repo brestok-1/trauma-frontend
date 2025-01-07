@@ -65,12 +65,7 @@ const ChatDescription: React.FC<ChatDescriptionProps> = ({ item }) => {
                Description
             </p>
             <p className="text-[#555555] lg:text-[16px] text-sm font-normal lg:mb-10 mb-3 leading-7">
-               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-               iaculis mi fringilla mauris <br /> ornare, in accumsan enim
-               volutpat. Morbi vulputate libero rutrum neque dapibus suscipit.{" "}
-               <br /> In vehicula, magna vitae ornare aliquam, nulla quam
-               suscipit lectus, non consectetur ligula <br /> enim at sem.
-               Maecenas sit amet nisl non tortor lacinia lobortis a at risus.
+               {item.description}
             </p>
             <button
                className="bg-[#0155A6] text-white lg:text-[16px] text-sm font-medium p-3 mt-auto mb-2 self-end"
@@ -208,13 +203,7 @@ const ChatDescription: React.FC<ChatDescriptionProps> = ({ item }) => {
                               Description
                            </p>
                            <p className="text-[#555555] lg:text-base text-sm font-normal lg:mb-10 mb-3 leading-7 lg:px-5">
-                              Lorem ipsum dolor sit amet, consectetur adipiscing
-                              elit. Quisque iaculis mi fringilla mauris ornare,
-                              in accumsan enim volutpat. Morbi vulputate libero
-                              rutrum neque dapibus suscipit. In vehicula, magna
-                              vitae ornare aliquam, nulla quam suscipit lectus,
-                              non consectetur ligula enim at sem. Maecenas sit
-                              amet nisl non tortor lacinia lobortis a at risus.
+                           {item.description}
                            </p>
                         </div>
                      </div>
