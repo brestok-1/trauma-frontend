@@ -2,7 +2,7 @@
   "name": "chat-bot",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://brestok.github.io/trauma-frontend",
+  "homepage": "https://brestok-1.github.io/trauma-frontend",
   "type": "module",
   "scripts": {
     "dev": "vite",
