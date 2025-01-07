@@ -79,6 +79,7 @@ const ChatPage = () => {
                      onClick={() => handleCardClick(item)}
                      className="cursor-pointer fade-in-up"
                   >
+
                      <ChatCard item={item} />
                   </div>
                )}
