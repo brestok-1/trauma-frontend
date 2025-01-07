@@ -105,11 +105,11 @@ body {
  @keyframes fadeInUp {
    0% {
      opacity: 0;
-     transform: translateY(20px); /* Сдвиг вверх */
+     transform: translateY(20px); 
    }
    100% {
      opacity: 1;
-     transform: translateY(0); /* Возвращаем на место */
+     transform: translateY(0);
    }
  }
  

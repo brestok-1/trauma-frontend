@@ -37,11 +37,11 @@ const ChatDescription: React.FC<ChatDescriptionProps> = ({ item }) => {
    };
 
    return (
-      <div className="bg-light_gray rounded-t-3xl border border-border_color pt-5 cursor-pointer">
+      <div key={item.id} className="bg-light_gray rounded-t-3xl border border-border_color pt-5 cursor-pointer">
          <p className="font-bold lg:text-[32px] text-xl lg:px-4 px-2 text-header_color text-start leading-10">
             {item.name}
          </p>
-         <div className="flex flex-col lg:gap-4 gap-2 rounded-lg lg:p-4 p-2 z-90">
+         <div className="flex flex-col lg:gap-4 gap-2 rounded-lg lg:p-4 p-2">
             <div className="flex flex-wrap gap-2">
                {item.treatmentAreas.map((area, index) => (
                   <span key={index} className="tags-style bg-pale_orange">
@@ -60,11 +60,11 @@ const ChatDescription: React.FC<ChatDescriptionProps> = ({ item }) => {
                ))}
             </div>
          </div>
-         <div className="bg-white pt-4 pl-4 pr-2 rounded-t-3xl slide-down-animation z-100 border-t text-start border-border_color flex flex-col">
+         <div className="bg-white pt-4 pl-4 pr-2 rounded-t-3xl slide-down-animation border-t text-start border-border_color flex flex-col">
             <p className="font-bold lg:text-xl text-lg text-header_color mb-2">
                Description
             </p>
-            <p className="text-[#555555] lg:text-[16px] text-sm font-normal lg:mb-10 mb-3 leading-7">
+            <p className="text-[#555555] lg:text-[16px] whitespace-pre-wrap text-sm font-normal lg:mb-10 mb-3 leading-7">
                {item.description}
             </p>
             <button
@@ -78,7 +78,7 @@ const ChatDescription: React.FC<ChatDescriptionProps> = ({ item }) => {
          {/* Modal */}
          {isModalOpen && (
             <div
-               className="fixed inset-0 bg-black bg-opacity-25 flex justify-center items-center"
+               className="fixed inset-0 bg-black bg-opacity-25 flex justify-center items-center z-50"
                onClick={handleModalClose}
             >
                <div
@@ -202,7 +202,7 @@ const ChatDescription: React.FC<ChatDescriptionProps> = ({ item }) => {
                            <p className="font-bold lg:text-xl text-lg text-header_color mb-5 lg:px-5">
                               Description
                            </p>
-                           <p className="text-[#555555] lg:text-base text-sm font-normal lg:mb-10 mb-3 leading-7 lg:px-5">
+                           <p className="text-[#555555] lg:text-base whitespace-pre-wrap text-sm font-normal lg:mb-10 mb-3 leading-7 lg:px-5">
                            {item.description}
                            </p>
                         </div>

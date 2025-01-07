@@ -14,7 +14,6 @@ const ChatPage = () => {
    const [isClosing, setIsClosing] = useState(false);
    const descriptionRef = useRef<HTMLDivElement | null>(null);
    
-   
 
    const handleCardClick = (item: Entity) => {
       if (selectedEntity === item) {
