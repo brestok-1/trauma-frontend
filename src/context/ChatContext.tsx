@@ -9,7 +9,7 @@ const defaultMessage: Message = {
    id: "1",
    chatId: "",
    author: "bot",
-   text: "Hallo! Ik help u een kliniek te vinden die aan al uw eisen voldoet",
+   text: "Hallo! Ik help u een kliniek te vinden die aan al uw eisen voldoet.",
    datetimeInserted: new Date().toISOString(),
 };
 
