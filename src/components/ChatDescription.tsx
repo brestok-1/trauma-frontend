@@ -41,7 +41,7 @@ const ChatDescription: React.FC<ChatDescriptionProps> = ({ item }) => {
          <p className="font-bold lg:text-[32px] text-xl lg:px-4 px-2 text-header_color text-start leading-10">
             {item.name}
          </p>
-         <div className="flex flex-col lg:gap-4 gap-2 rounded-lg lg:p-4 p-2">
+         <div className="flex flex-col lg:gap-4 gap-2 rounded-lg lg:p-4 p-2 z-90">
             <div className="flex flex-wrap gap-2">
                {item.treatmentAreas.map((area, index) => (
                   <span key={index} className="tags-style bg-pale_orange">
@@ -60,7 +60,7 @@ const ChatDescription: React.FC<ChatDescriptionProps> = ({ item }) => {
                ))}
             </div>
          </div>
-         <div className="bg-white pt-4 pl-4 pr-2 rounded-t-3xl border-t text-start border-border_color flex flex-col">
+         <div className="bg-white pt-4 pl-4 pr-2 rounded-t-3xl slide-down-animation z-100 border-t text-start border-border_color flex flex-col">
             <p className="font-bold lg:text-xl text-lg text-header_color mb-2">
                Description
             </p>

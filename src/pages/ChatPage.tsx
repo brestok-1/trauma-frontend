@@ -5,25 +5,41 @@ import ChatPanel from "../components/Chat/ChatPanel";
 import Doctor from "../assets/images/Doctor.png";
 import { useChat } from "../context/ChatContext";
 import ChatCardList from "../components/ChatCardList";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Entity } from "../types/ChatType";
 
 const ChatPage = () => {
    const { entities, showDescription, setShowDescription } = useChat();
    const [selectedEntity, setSelectedEntity] = useState<Entity | null>(null);
+   const [isClosing, setIsClosing] = useState(false);
+   const descriptionRef = useRef<HTMLDivElement | null>(null);
+   
+   
 
    const handleCardClick = (item: Entity) => {
       if (selectedEntity === item) {
          setShowDescription(!showDescription); 
+         if (!showDescription) {
+            setTimeout(() => {
+               descriptionRef.current?.scrollIntoView({ behavior: "smooth" });
+            }, 0);
+         }
       } else {
          setSelectedEntity(item);
          setShowDescription(true);
+         setTimeout(() => {
+            descriptionRef.current?.scrollIntoView({ behavior: "smooth" });
+         }, 0);
       }
    };
 
    const handleDescriptionClick = () => {
-      setShowDescription(false); 
-      setSelectedEntity(null); 
+      setIsClosing(true); 
+      setTimeout(() => {
+         setShowDescription(false); 
+         setSelectedEntity(null); 
+         setIsClosing(false); 
+      }, 500); 
    };
 
    const filteredEntities = entities.filter((item) => item !== selectedEntity);
@@ -48,7 +64,11 @@ const ChatPage = () => {
          <div className="flex flex-col gap-y-10">
             <ChatPanel />
             {showDescription && selectedEntity && (
-               <div onClick={handleDescriptionClick}>
+               <div
+               ref={descriptionRef}
+                  onClick={handleDescriptionClick}
+                  className={isClosing ? "scroll-animation" : ""}
+               >
                   <ChatDescription item={selectedEntity} />
                </div>
             )}
@@ -58,7 +78,7 @@ const ChatPage = () => {
                   <div
                      key={item.id} 
                      onClick={() => handleCardClick(item)}
-                     className="cursor-pointer"
+                     className="cursor-pointer fade-in-up"
                   >
                      <ChatCard item={item} />
                   </div>
