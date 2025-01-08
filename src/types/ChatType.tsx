@@ -35,6 +35,9 @@ export interface Entity {
    ageGroups: AgeGroup[];
    treatmentAreas: string[];
    treatmentMethods: string[];
+   highlightedAgeGroup: AgeGroup;
+   highlightedTreatmentArea: string;
+   highlightedTreatmentMethod: string;
    contactDetails: ContactDetails;
    description: string;
 }
