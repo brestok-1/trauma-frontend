@@ -89,6 +89,10 @@ export const ChatProvider: FC<{ children: React.ReactNode }> = ({
          currentChatId = await createChat();
       }
 
+      if (entities.length > 0) {
+         setEntities([]);
+      }
+
       setMessages((prev) => [
          ...prev,
          {
