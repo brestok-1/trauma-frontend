@@ -54,7 +54,7 @@ const ChatPage = () => {
                />
             </div>
             <p className="lg:text-4xl text-3xl text-[#666666] font-thin">
-               Hoi, ik ben [NAAM]
+               Hoi, ik ben Bennie
             </p>
             <p className="lg:text-5xl text-4xl py-2 text-transparent bg-clip-text bg-text-gradient font-extrabold mb-10">
                Hoe kan ik u vandaag helpen?

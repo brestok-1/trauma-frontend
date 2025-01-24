@@ -9,7 +9,7 @@ const defaultMessage: Message = {
    id: "1",
    chatId: "",
    author: "bot",
-   text: "Hallo! Ik help u een kliniek te vinden die aan al uw eisen voldoet.",
+   text: "Hoi! Wat fijn dat je hier bent. Ik ben je assistent en help je graag met het vinden van de juiste zorg of behandeling. Of het nu gaat om EMDR, de slapende honden-methode, of zorg voor een specifieke situatie, ik heb alle kennis in huis om je verder te helpen. Je kunt me alles vragen over behandelingen, doelgroepen en locaties. Hoe kan ik je vandaag helpen?",
    datetimeInserted: new Date().toISOString(),
 };
 
