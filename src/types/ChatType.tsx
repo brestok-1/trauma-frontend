@@ -14,6 +14,7 @@ export interface ChatContextType {
    resetChat: () => void;
    showDescription: boolean;
    setShowDescription: React.Dispatch<React.SetStateAction<boolean>>;
+   isLoginButtonBlinking: boolean; 
 }
 
 export interface AgeGroup {

@@ -2,6 +2,7 @@ import { createContext, useContext, useState, FC } from "react";
 import { ChatContextType, Entity, Message } from "../types/ChatType";
 import { createChatRequest, sendMessageRequest } from "../api/chatApi";
 import { CreateChatResponse, SendMessageResponse } from "../types/ApiChatTypes";
+import Cookies from "js-cookie";
 
 const ChatContext = createContext<ChatContextType | undefined>(undefined);
 
@@ -20,11 +21,19 @@ export const ChatProvider: FC<{ children: React.ReactNode }> = ({
    const [messages, setMessages] = useState<Message[]>([defaultMessage]);
    const [entities, setEntities] = useState<Entity[]>([]);
    const [showDescription, setShowDescription] = useState<boolean>(false);
+   const [isLoginButtonBlinking, setLoginButtonBlinking] =
+      useState<boolean>(false);
 
-   
    const createChat = async (): Promise<string> => {
+      const token = Cookies.get("accessToken");
+      if (!token) {
+         window.scrollTo({ top: 0, behavior: "smooth" });
+         setLoginButtonBlinking(true);
+         setTimeout(() => setLoginButtonBlinking(false), 2000);
+         throw new Error("Token is missing.");
+      }
       try {
-         const chatData: CreateChatResponse = await createChatRequest();
+         const chatData: CreateChatResponse = await createChatRequest(token);
          if (chatData.successful) {
             const newChatId = chatData.data.id;
             setChatId(newChatId);
@@ -49,11 +58,15 @@ export const ChatProvider: FC<{ children: React.ReactNode }> = ({
             datetimeInserted: new Date().toISOString(),
          },
       ]);
-
+      const token = Cookies.get("accessToken");
+      if (!token) {
+         throw new Error("Token is missing.");
+      }
       try {
          const chatMessage: SendMessageResponse = await sendMessageRequest(
             chatId,
-            text
+            text,
+            token
          );
 
          setMessages((prev) =>
@@ -109,14 +122,22 @@ export const ChatProvider: FC<{ children: React.ReactNode }> = ({
 
    const resetChat = () => {
       setMessages([defaultMessage]);
-      setChatId('');
+      setChatId("");
       setEntities([]);
       setShowDescription(false);
    };
 
    return (
       <ChatContext.Provider
-         value={{ messages, entities, sendMessage, resetChat, showDescription, setShowDescription }}
+         value={{
+            messages,
+            entities,
+            sendMessage,
+            resetChat,
+            showDescription,
+            setShowDescription,
+            isLoginButtonBlinking,
+         }}
       >
          {children}
       </ChatContext.Provider>

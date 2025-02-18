@@ -6,14 +6,21 @@ import {
 } from "../types/ApiChatTypes";
 import api from "./index";
 
-export const createChatRequest = async (): Promise<CreateChatResponse> => {
+export const createChatRequest = async (
+   token: string
+): Promise<CreateChatResponse> => {
    const requestData: CreateChatRequest = {
       model: "gpt-4o-mini",
    };
    try {
       const response = await api.post<CreateChatResponse>(
          "/api/chat",
-         requestData
+         requestData,
+         {
+            headers: {
+               Authorization: `Bearer ${token}`,
+            },
+         }
       );
       return response.data;
    } catch (error: unknown) {
@@ -28,7 +35,8 @@ export const createChatRequest = async (): Promise<CreateChatResponse> => {
 
 export const sendMessageRequest = async (
    chatId: string,
-   userMessage: string
+   userMessage: string,
+   token: string
 ): Promise<SendMessageResponse> => {
    const requestData: SendMessageRequest = {
       text: userMessage,
@@ -36,7 +44,12 @@ export const sendMessageRequest = async (
    try {
       const response = await api.post<SendMessageResponse>(
          `/api/message/${chatId}`,
-         requestData
+         requestData,
+         {
+            headers: {
+               Authorization: `Bearer ${token}`,
+            },
+         }
       );
       return response.data;
    } catch (error: unknown) {

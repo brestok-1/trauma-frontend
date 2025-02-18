@@ -10,6 +10,13 @@ export interface CreateChatResponse {
       title: string;
       model: string;
       entityData: Entity | object;
+      account: {
+         id: string;
+         email: string;
+         accountType: number;
+         datetimeInserted: string;
+         datetimeUpdated: string;
+      };
       datetimeInserted: string;
       datetimeUpdated: string;
    };
@@ -18,6 +25,7 @@ export interface CreateChatResponse {
       message: string;
    };
 }
+
 
 export interface SendMessageRequest {
    text: string;
