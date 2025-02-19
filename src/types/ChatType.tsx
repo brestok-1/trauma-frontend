@@ -37,8 +37,9 @@ export interface Entity {
    treatmentAreas: string[];
    treatmentMethods: string[];
    highlightedAgeGroup: AgeGroup;
-   highlightedTreatmentArea: string;
-   highlightedTreatmentMethod: string;
+   highlightedTreatmentArea: string | null;
+   highlightedTreatmentMethod: string | null;
    contactDetails: ContactDetails;
    description: string;
+   topMatch: boolean;
 }

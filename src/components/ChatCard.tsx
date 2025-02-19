@@ -6,13 +6,35 @@ interface ChatCardProps {
    item: Entity;
 }
 
+
 const ChatCard: React.FC<ChatCardProps> = ({ item }) => {
+   console.log(item)
    return (
       <div className="flex flex-col justify-between bg-light_gray border border-border_color md:w-[230px] w-[210px] rounded-3xl lg:p-4 px-2 py-4 h-full">
          <div className="flex flex-col h-full">
-            <p className="text-header_color line-clamp-2 break-words overflow-hidden font-bold text-start lg:text-xl text-lg mb-1">
-               {item.name}
-            </p>
+            <div className="flex justify-between items-start">
+               <p className="text-header_color line-clamp-2 break-words overflow-hidden font-bold text-start lg:text-xl text-lg mb-1">
+                  {item.name}
+               </p>
+               {item.topMatch && (
+                  <span>
+                     <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2}
+                        stroke="currentColor"
+                        className="size-6 text-[#2f539b] ml-2"
+                     >
+                        <path
+                           strokeLinecap="round"
+                           strokeLinejoin="round"
+                           d="m4.5 12.75 6 6 9-13.5"
+                        />
+                     </svg>
+                  </span>
+               )}
+            </div>
             <div className="flex items-start">
                <p className="text-header_color line-clamp-2 break-words overflow-hidden font-bold text-start text-sm mb-2">
                   {item.contactDetails.address}
