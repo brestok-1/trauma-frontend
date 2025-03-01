@@ -1,7 +1,10 @@
 import { createContext, useContext, useState, FC } from "react";
 import { ChatContextType, Entity, Message } from "../types/ChatType";
 import { createChatRequest, sendMessageRequest } from "../api/chatApi";
-import { CreateChatResponse, SendMessageResponse } from "../types/ApiChatTypes";
+import {
+   CreateChatResponse,
+   SendMessageResponse,
+} from "../types/ApiChatTypes";
 import Cookies from "js-cookie";
 
 const ChatContext = createContext<ChatContextType | undefined>(undefined);
@@ -126,6 +129,8 @@ export const ChatProvider: FC<{ children: React.ReactNode }> = ({
       setEntities([]);
       setShowDescription(false);
    };
+
+   
 
    return (
       <ChatContext.Provider

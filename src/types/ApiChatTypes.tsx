@@ -26,7 +26,6 @@ export interface CreateChatResponse {
    };
 }
 
-
 export interface SendMessageRequest {
    text: string;
 }

@@ -57,7 +57,7 @@ const SignInPage = () => {
          }
       } catch (error: unknown) {
          if (error instanceof Error) {
-            setError(error.message); 
+            setError(error.message);
          } else {
             setError("An unknown error occurred.");
          }
@@ -65,13 +65,13 @@ const SignInPage = () => {
    };
 
    return (
-      <div className="flex justify-center items-center h-screen overflow-hidden">
+      <div className="flex justify-center px-24 items-center h-screen overflow-hidden">
          <form
             onSubmit={handleSubmit}
             className="flex flex-col gap-y-4 p-4 w-[70%] md:w-1/3 xl:w-[30%]"
          >
-            <p className="text-transparent bg-clip-text bg-text-gradient p-2 font-extrabold mb-4 text-2xl md:text-3xl lg:text-4xl">
-               Sign In
+            <p className="text-transparent text-center bg-clip-text bg-text-gradient p-2 font-extrabold mb-4 text-2xl md:text-3xl lg:text-4xl">
+               Log in
             </p>
             <div className="relative mb-4 flex items-center border rounded-sm">
                <div className="px-3 py-2 flex items-center">
@@ -124,7 +124,7 @@ const SignInPage = () => {
                   className={`w-full p-2 pl-3 outline-none ${
                      errors.password || error ? "bg-red-500 bg-opacity-30" : ""
                   }`}
-                  placeholder="Password"
+                  placeholder="Wachtwoord"
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -177,7 +177,7 @@ const SignInPage = () => {
             )}
 
             <button className="p-2 text-lg font-semibold hover:bg-orange-600 duration-300 bg-[#EF6F28] text-white rounded-sm">
-               Sign In
+               Inloggen
             </button>
          </form>
       </div>
