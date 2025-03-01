@@ -13,9 +13,11 @@ function App() {
          <Route
             path="/"
             element={
-               <ChatProvider>
-                  <ChatPage />
-               </ChatProvider>
+               <ProtectedRoute>
+                  <ChatProvider>
+                     <ChatPage />
+                  </ChatProvider>
+               </ProtectedRoute>
             }
          />
          <Route
@@ -30,9 +32,9 @@ function App() {
             path="/admin"
             element={
                <ProtectedRoute>
-               <AdminProvider>
-                  <AdminPage />
-               </AdminProvider>
+                  <AdminProvider>
+                     <AdminPage />
+                  </AdminProvider>
                </ProtectedRoute>
             }
          />
