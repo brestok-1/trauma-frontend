@@ -51,7 +51,7 @@ const SignInPage = () => {
                return;
             }
 
-            navigate("/");
+            navigate("/", { state: { showPopup: true } });
          } else {
             setError(result.error?.message || "Authentication failed.");
          }

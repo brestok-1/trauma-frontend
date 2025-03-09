@@ -5,10 +5,11 @@ import ChatPanel from "../components/Chat/ChatPanel";
 import Doctor from "../assets/images/Doctor.png";
 import { useChat } from "../context/ChatContext";
 import ChatCardList from "../components/ChatCardList";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Entity } from "../types/ChatType";
 import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import PopUp from "../components/PopUp";
 
 const ChatPage = () => {
    const {
@@ -18,9 +19,17 @@ const ChatPage = () => {
       isLoginButtonBlinking,
    } = useChat();
    const [selectedEntity, setSelectedEntity] = useState<Entity | null>(null);
+   const location = useLocation();
    const [isClosing, setIsClosing] = useState(false);
    const descriptionRef = useRef<HTMLDivElement | null>(null);
+   const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
    const navigate = useNavigate();
+
+   useEffect(() => {
+      if (location.state?.showPopup) {
+         setIsPopupOpen(true);
+      }
+   }, [location.state]);
 
    const handleCardClick = (item: Entity) => {
       if (selectedEntity === item) {
@@ -51,6 +60,11 @@ const ChatPage = () => {
    const handleLogout = (): void => {
       Cookies.remove("accessToken", { path: "/" });
       navigate("/auth/login");
+   };
+
+   const handleClosePopup = () => {
+      setIsPopupOpen(false);
+      navigate(".", { replace: true });
    };
 
    const isLoggedIn = !!Cookies.get("accessToken");
@@ -106,6 +120,25 @@ const ChatPage = () => {
             />
             <ChatInput />
          </div>
+         <PopUp isOpen={isPopupOpen} onClose={handleClosePopup} hideHeader>
+            <div className="flex flex-col gap-y-5">
+               <p className="text-lg p-2 w-full text-justify">
+                  Wij hechten veel waarde aan je privacy. Alle gedeelde gegevens
+                  worden geanonimiseerd: locaties, namen en andere gevoelige
+                  informatie worden niet zichtbaar gemaakt. <br /> <br /> Door
+                  deze chat te gebruiken, ga je akkoord met het delen van
+                  informatie om het model te verbeteren en te trainen. Je kunt
+                  er zeker van zijn dat alle data met zorg en volgens de
+                  geldende privacyregels wordt verwerkt.
+               </p>
+               <button
+                  className="p-1.5 bg-orange-500 text-xl font-semibold text-white w-full"
+                  onClick={handleClosePopup}
+               >
+                  Akkoord
+               </button>
+            </div>
+         </PopUp>
       </div>
    );
 };
