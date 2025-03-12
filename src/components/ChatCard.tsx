@@ -6,9 +6,8 @@ interface ChatCardProps {
    item: Entity;
 }
 
-
 const ChatCard: React.FC<ChatCardProps> = ({ item }) => {
-   console.log(item)
+   console.log(item);
    return (
       <div className="flex flex-col justify-between bg-light_gray border border-border_color md:w-[230px] w-[210px] rounded-3xl lg:p-4 px-2 py-4 h-full">
          <div className="flex flex-col h-full">
@@ -51,17 +50,23 @@ const ChatCard: React.FC<ChatCardProps> = ({ item }) => {
          </div>
          <div className="flex flex-col gap-2 ">
             <div className="flex flex-wrap gap-2">
-               <span className="tags-style bg-dark_gray text-start">
-                  {`${item.highlightedAgeGroup.ageMin}-${item.highlightedAgeGroup.ageMax} jaar`}
-               </span>
-               <span className="tags-style bg-pale_orange text-start">
-                  {item.highlightedTreatmentArea}
-               </span>
+               {item.highlightedAgeGroup && (
+                  <span className="tags-style bg-dark_gray text-start">
+                     {`${item.highlightedAgeGroup.ageMin}-${item.highlightedAgeGroup.ageMax} jaar`}
+                  </span>
+               )}
+               {item.highlightedTreatmentArea && (
+                  <span className="tags-style bg-pale_orange text-start">
+                     {item.highlightedTreatmentArea}
+                  </span>
+               )}
             </div>
             <div className="flex flex-wrap gap-2">
-               <span className="tags-style bg-pastel_blue text-start">
-                  {item.highlightedTreatmentMethod}
-               </span>
+               {item.highlightedTreatmentMethod && (
+                  <span className="tags-style bg-pastel_blue text-start">
+                     {item.highlightedTreatmentMethod}
+                  </span>
+               )}
             </div>
          </div>
       </div>
