@@ -9,7 +9,7 @@ interface ChatCardProps {
 const ChatCard: React.FC<ChatCardProps> = ({ item }) => {
    console.log(item);
    return (
-      <div className="flex flex-col justify-between bg-light_gray border border-border_color md:w-[230px] w-[210px] rounded-3xl lg:p-4 px-2 py-4 h-full">
+<div className="flex flex-col justify-between bg-light_gray border border-border_color rounded-3xl lg:p-4 px-2 py-4 h-full min-w-[200px] max-w-[500px] w-full">
          <div className="flex flex-col h-full">
             <div className="flex justify-between items-start">
                <p className="text-header_color line-clamp-2 break-words overflow-hidden font-bold text-start lg:text-xl text-lg mb-1">

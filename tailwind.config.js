@@ -19,6 +19,9 @@ export default {
         'text-gradient':
           'linear-gradient(90deg, #02284D 0%, #DB6E31 40%, #0155A6 80%)',
       },
+      screens: {
+        '3xl': '1700px',
+      },
     },
   },
   plugins: [],
