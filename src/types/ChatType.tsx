@@ -45,3 +45,8 @@ export interface Entity {
    description: string;
    topMatch: boolean;
 }
+
+export interface SendFeedbackRequest {
+   isPositive: boolean;
+   comment: string | null;
+}

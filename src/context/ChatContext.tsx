@@ -13,7 +13,18 @@ const defaultMessage: Message = {
    id: "1",
    chatId: "",
    author: "bot",
-   text: "Hoi! Wat fijn dat je hier bent. Ik ben je assistent en help je graag met het vinden van de juiste zorg of behandeling. Of het nu gaat om EMDR, de slapende honden-methode, of zorg voor een specifieke situatie, ik heb alle kennis in huis om je verder te helpen. Je kunt me alles vragen over behandelingen, doelgroepen en locaties. Hoe kan ik je vandaag helpen?",
+   text: `**Welkom.**  
+Je kunt hier gericht zoeken naar passende behandelaren voor traumazorg in Nederland.  
+
+Om je zo goed mogelijk te helpen, kun je je vraag het beste formuleren met deze onderdelen:  
+
+•  **Leeftijd van de persoon**  
+• **Regio of woonplaats** (zoals stad, dorp of gemeente)  
+• **Behandelvorm** (bijv. EMDR)  
+• **Type klacht of trauma** (optioneel)  
+
+**Bijvoorbeeld:**  
+*"Ik zoek een behandelaar voor een meisje van 4 jaar in regio Velsen met behandelvorm EMDR."*`,
    datetimeInserted: new Date().toISOString(),
 };
 
@@ -51,6 +62,7 @@ export const ChatProvider: FC<{ children: React.ReactNode }> = ({
 
    const getMessageFromChat = async (chatId: string, text: string) => {
       const typingIndicatorId = `typing-${chatId}`;
+      console.log(typingIndicatorId)
       setMessages((prev) => [
          ...prev,
          {
@@ -79,7 +91,7 @@ export const ChatProvider: FC<{ children: React.ReactNode }> = ({
          setMessages((prev) => [
             ...prev,
             {
-               id: `${prev.length + 1}`,
+               id: chatMessage.data.id,
                chatId: chatId,
                author: "bot",
                text: chatMessage.data.text,

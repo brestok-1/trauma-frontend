@@ -33,6 +33,7 @@ export interface SendMessageRequest {
 export interface SendMessageResponse {
    data: {
       text: string;
+      id: string;
       entities: Entity[];
    };
    successful: boolean;
@@ -40,3 +41,4 @@ export interface SendMessageResponse {
       message: string;
    };
 }
+
