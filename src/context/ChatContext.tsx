@@ -14,11 +14,11 @@ const defaultMessage: Message = {
    chatId: "",
    author: "bot",
    text: `**Welkom.**  
-Je kunt hier gericht zoeken naar passende behandelaren voor traumazorg in Nederland.  
+Je kunt hier gericht zoeken naar passende behandelaren voor traumazorg in Noord-Holland.
 
-Om je zo goed mogelijk te helpen, kun je je vraag het beste formuleren met deze onderdelen:  
+Om je zo goed mogelijk te helpen, kun je je vraag het beste formuleren met deze onderdelen:
 
-•  **Leeftijd van de persoon**  
+• **Leeftijd van de persoon**  
 • **Regio of woonplaats** (zoals stad, dorp of gemeente)  
 • **Behandelvorm** (bijv. EMDR)  
 • **Type klacht of trauma** (optioneel)  

@@ -71,7 +71,7 @@ const ChatPage = () => {
    const filteredEntities = entities.filter((item) => item !== selectedEntity);
 
    return (
-      <div className="h-full px-5 md:max-w-[80%] lg:max-w-[70%] xl:max-w-[60%] w-full mx-auto py-10">
+      <div className="h-full px-5 md:px-24 md:max-w-[80%] lg:max-w-[70%] xl:max-w-[60%] w-full mx-auto py-10">
          <button
             onClick={isLoggedIn ? handleLogout : () => navigate("/auth/login")}
             className={`absolute top-4 right-4 bg-[#EF6F28] hover:bg-orange-600 duration-300 text-white px-4 py-2 ${
