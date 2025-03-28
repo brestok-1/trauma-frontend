@@ -137,7 +137,7 @@ const ChatMessages: React.FC = () => {
                   <div className="w-12 h-12 bg-light_gray rounded-md border border-border_color flex-shrink-0">
                      <img
                         src={Doctor}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover rounded-md"
                         alt="Doctor"
                      />
                   </div>

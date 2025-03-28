@@ -84,7 +84,7 @@ const ChatPage = () => {
             <div className="w-24 h-24 bg-light_gray rounded-lg border border-border_color mb-7">
                <img
                   src={Doctor}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover rounded-lg"
                   alt="Doctor"
                />
             </div>
