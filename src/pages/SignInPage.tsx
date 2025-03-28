@@ -65,10 +65,10 @@ const SignInPage = () => {
    };
 
    return (
-      <div className="flex justify-center px-24 items-center h-screen overflow-hidden">
+      <div className="flex justify-center md:px-24 items-center h-screen overflow-hidden">
          <form
             onSubmit={handleSubmit}
-            className="flex flex-col gap-y-4 p-4 w-[70%] md:w-1/3 xl:w-[30%]"
+            className="flex flex-col gap-y-4 py-4 md:px-4 w-[70%] md:w-1/3 xl:w-[30%]"
          >
             <p className="text-transparent text-center bg-clip-text bg-text-gradient p-2 font-extrabold mb-4 text-2xl md:text-3xl lg:text-4xl">
                Log in

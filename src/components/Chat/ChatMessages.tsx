@@ -14,11 +14,11 @@ const PopupFeedback: React.FC<{
    const [comment, setComment] = useState<string>("");
    return createPortal(
       <div
-         className="absolute z-50 bg-white p-4 rounded-md shadow-lg border w-80"
+      className="absolute z-50 bg-white p-4 rounded-md shadow-lg border md:w-80 w-44"
          style={{ top: position.top, left: position.left }}
       >
          <button
-            className="p-1 text-xs self-end absolute top-0 right-0"
+            className="p-1 text-xs self-end absolute top-0 md:right-0 right-2"
             onClick={onClose}
          >
             <svg
