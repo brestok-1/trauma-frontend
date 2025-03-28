@@ -167,7 +167,7 @@ const ChatMessages: React.FC = () => {
                                  likes[message.id]
                                     ? "text-green-700"
                                     : "text-gray-700"
-                              } duration-300 hover:text-green-700 px-2 py-1 rounded text-sm`}
+                              } duration-300 hover:text-green-700 p-2 rounded text-sm`}
                               onClick={() => handleLikeClick(message.id)}
                            >
                               <svg
@@ -192,7 +192,7 @@ const ChatMessages: React.FC = () => {
                                        ? "text-red-700"
                                        : "text-gray-700"
                                  }
-                                  duration-300 hover:text-red-700 px-2 py-1 rounded text-sm`}
+                                  duration-300 hover:text-red-700 p-2 rounded text-sm`}
                                  onClick={(e) =>
                                     handleDislikeClick(e, message.id)
                                  }
