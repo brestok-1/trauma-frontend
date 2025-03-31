@@ -72,12 +72,12 @@ const ChatPage = () => {
 
    const [currentPage, setCurrentPage] = useState<number>(1);
    const [itemsPerPage, setItemsPerPage] = useState<number>(
-      window.innerWidth > 1800 ? 5 : 6
+      window.innerWidth > 2099 ? 5 : 6
    );
 
    useEffect(() => {
       const updateItemsPerPage = () => {
-         setItemsPerPage(window.innerWidth > 1800 ? 5 : 6);
+         setItemsPerPage(window.innerWidth > 2099 ? 5 : 6);
          setCurrentPage(1);
       };
 
@@ -173,6 +173,9 @@ const ChatPage = () => {
                            />
                         </svg>
                      </button>
+                     <span className="text-lg">
+                        {currentPage} / {totalPages}
+                     </span>
                      <button
                         onClick={nextPage}
                         disabled={currentPage === totalPages}
