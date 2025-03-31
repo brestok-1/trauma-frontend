@@ -91,13 +91,12 @@ export const ChatProvider: FC<{ children: React.ReactNode }> = ({
                chatId: chatId,
                author: "bot",
                text: chatMessage.data.text,
+               entities: chatMessage.data.entities || [], 
                datetimeInserted: new Date().toISOString(),
             },
          ]);
 
-         if (chatMessage.data.entities) {
-            setEntities(chatMessage.data.entities);
-         }
+
       } catch (error) {
          console.error("Failed to send message:", error);
          setMessages((prev) =>
@@ -122,10 +121,6 @@ export const ChatProvider: FC<{ children: React.ReactNode }> = ({
 
       if (messages.length === 1) {
          currentChatId = await createChat();
-      }
-
-      if (entities.length > 0) {
-         setEntities([]);
       }
 
       await getMessageFromChat(currentChatId, text);

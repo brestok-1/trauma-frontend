@@ -21,7 +21,7 @@ const ChatDescription: React.FC<ChatDescriptionProps> = ({ item }) => {
    return (
       <div
          key={item.id}
-         className="bg-light_gray rounded-t-3xl border border-border_color pt-5 cursor-pointer"
+         className="bg-light_gray rounded-t-3xl border border-border_color pt-5 mb-10 cursor-pointer"
       >
          <p className="font-bold lg:text-[32px] text-xl lg:px-4 px-2 text-header_color text-start leading-10">
             {item.name}

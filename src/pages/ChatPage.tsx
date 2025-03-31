@@ -1,27 +1,26 @@
-import ChatCard from "../components/ChatCard";
-import ChatDescription from "../components/ChatDescription";
+
 import ChatInput from "../components/Chat/ChatInput";
 import ChatPanel from "../components/Chat/ChatPanel";
 import Doctor from "../assets/images/Doctor.png";
 import { useChat } from "../context/ChatContext";
-import ChatCardList from "../components/ChatCardList";
-import { useEffect, useRef, useState } from "react";
-import { Entity } from "../types/ChatType";
+// import ChatCardList from "../components/ChatCardList";
+import { useEffect, useState } from "react";
+// import { Entity } from "../types/ChatType";
 import Cookies from "js-cookie";
 import { useLocation, useNavigate } from "react-router-dom";
 import PopUp from "../components/PopUp";
 
 const ChatPage = () => {
    const {
-      entities,
-      showDescription,
-      setShowDescription,
+      // entities,
+      // showDescription,
+      // setShowDescription,
       isLoginButtonBlinking,
    } = useChat();
-   const [selectedEntity, setSelectedEntity] = useState<Entity | null>(null);
+   // const [selectedEntity, setSelectedEntity] = useState<Entity | null>(null);
    const location = useLocation();
-   const [isClosing, setIsClosing] = useState(false);
-   const descriptionRef = useRef<HTMLDivElement | null>(null);
+   // const [isClosing, setIsClosing] = useState(false);
+   // const descriptionRef = useRef<HTMLDivElement | null>(null);
    const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
    const navigate = useNavigate();
 
@@ -31,31 +30,31 @@ const ChatPage = () => {
       }
    }, [location.state]);
 
-   const handleCardClick = (item: Entity) => {
-      if (selectedEntity === item) {
-         setShowDescription(!showDescription);
-         if (!showDescription) {
-            setTimeout(() => {
-               descriptionRef.current?.scrollIntoView({ behavior: "smooth" });
-            }, 0);
-         }
-      } else {
-         setSelectedEntity(item);
-         setShowDescription(true);
-         setTimeout(() => {
-            descriptionRef.current?.scrollIntoView({ behavior: "smooth" });
-         }, 0);
-      }
-   };
+   // const handleCardClick = (item: Entity) => {
+   //    if (selectedEntity === item) {
+   //       setShowDescription(!showDescription);
+   //       if (!showDescription) {
+   //          setTimeout(() => {
+   //             descriptionRef.current?.scrollIntoView({ behavior: "smooth" });
+   //          }, 0);
+   //       }
+   //    } else {
+   //       setSelectedEntity(item);
+   //       setShowDescription(true);
+   //       setTimeout(() => {
+   //          descriptionRef.current?.scrollIntoView({ behavior: "smooth" });
+   //       }, 0);
+   //    }
+   // };
 
-   const handleDescriptionClick = () => {
-      setIsClosing(true);
-      setTimeout(() => {
-         setShowDescription(false);
-         setSelectedEntity(null);
-         setIsClosing(false);
-      }, 500);
-   };
+   // const handleDescriptionClick = () => {
+   //    setIsClosing(true);
+   //    setTimeout(() => {
+   //       setShowDescription(false);
+   //       setSelectedEntity(null);
+   //       setIsClosing(false);
+   //    }, 500);
+   // };
 
    const handleLogout = (): void => {
       Cookies.remove("accessToken", { path: "/" });
@@ -68,39 +67,39 @@ const ChatPage = () => {
    };
 
    const isLoggedIn = !!Cookies.get("accessToken");
-   const filteredEntities = entities.filter((item) => item !== selectedEntity);
+   // const filteredEntities = entities.filter((item) => item !== selectedEntity);
 
-   const [currentPage, setCurrentPage] = useState<number>(1);
-   const [itemsPerPage, setItemsPerPage] = useState<number>(
-      window.innerWidth > 2099 ? 5 : 6
-   );
+   // const [currentPage, setCurrentPage] = useState<number>(1);
+   // const [itemsPerPage, setItemsPerPage] = useState<number>(
+   //    window.innerWidth > 2099 ? 5 : 6
+   // );
 
-   useEffect(() => {
-      const updateItemsPerPage = () => {
-         setItemsPerPage(window.innerWidth > 2099 ? 5 : 6);
-         setCurrentPage(1);
-      };
+   // useEffect(() => {
+   //    const updateItemsPerPage = () => {
+   //       setItemsPerPage(window.innerWidth > 2099 ? 5 : 6);
+   //       setCurrentPage(1);
+   //    };
 
-      window.addEventListener("resize", updateItemsPerPage);
-      return () => window.removeEventListener("resize", updateItemsPerPage);
-   }, []);
+   //    window.addEventListener("resize", updateItemsPerPage);
+   //    return () => window.removeEventListener("resize", updateItemsPerPage);
+   // }, []);
 
-   const startIndex: number = (currentPage - 1) * itemsPerPage;
-   const endIndex: number = startIndex + itemsPerPage;
+   // const startIndex: number = (currentPage - 1) * itemsPerPage;
+   // const endIndex: number = startIndex + itemsPerPage;
 
-   const paginatedEntities: Entity[] = filteredEntities.slice(
-      startIndex,
-      endIndex
-   );
-   const totalPages: number = Math.ceil(filteredEntities.length / itemsPerPage);
+   // const paginatedEntities: Entity[] = filteredEntities.slice(
+   //    startIndex,
+   //    endIndex
+   // );
+   // const totalPages: number = Math.ceil(filteredEntities.length / itemsPerPage);
 
-   const nextPage = (): void => {
-      if (currentPage < totalPages) setCurrentPage((prev) => prev + 1);
-   };
+   // const nextPage = (): void => {
+   //    if (currentPage < totalPages) setCurrentPage((prev) => prev + 1);
+   // };
 
-   const prevPage = (): void => {
-      if (currentPage > 1) setCurrentPage((prev) => prev - 1);
-   };
+   // const prevPage = (): void => {
+   //    if (currentPage > 1) setCurrentPage((prev) => prev - 1);
+   // };
 
    return (
       <div className="h-full px-5 xl:px-0 md:max-w-[80%] lg:max-w-[70%] xl:max-w-[55%] w-full mx-auto py-10">
@@ -129,7 +128,7 @@ const ChatPage = () => {
          </div>
          <div className="flex flex-col gap-y-10">
             <ChatPanel />
-            {showDescription && selectedEntity && (
+            {/* {showDescription && selectedEntity && (
                <div
                   ref={descriptionRef}
                   onClick={handleDescriptionClick}
@@ -198,7 +197,7 @@ const ChatPage = () => {
                      </button>
                   </div>
                </>
-            )}
+            )} */}
             <ChatInput />
          </div>
          <PopUp isOpen={isPopupOpen} onClose={handleClosePopup} hideHeader>

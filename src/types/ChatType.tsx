@@ -5,13 +5,14 @@ export interface Message {
    chatId: string;
    author: "user" | "bot";
    text: string;
+   entities?: Entity[];
    datetimeInserted: string;
    datetimeUpdated?: string;
 }
 
 export interface ChatContextType {
    messages: Message[];
-   entities: Entity[];
+   entities: Entity[] | [];
    sendMessage: (text: string) => void;
    resetChat: () => void;
    showDescription: boolean;
