@@ -1,10 +1,7 @@
 import { createContext, useContext, useState, FC } from "react";
 import { ChatContextType, Entity, Message } from "../types/ChatType";
 import { createChatRequest, sendMessageRequest } from "../api/chatApi";
-import {
-   CreateChatResponse,
-   SendMessageResponse,
-} from "../types/ApiChatTypes";
+import { CreateChatResponse, SendMessageResponse } from "../types/ApiChatTypes";
 import Cookies from "js-cookie";
 
 const ChatContext = createContext<ChatContextType | undefined>(undefined);
@@ -62,7 +59,6 @@ export const ChatProvider: FC<{ children: React.ReactNode }> = ({
 
    const getMessageFromChat = async (chatId: string, text: string) => {
       const typingIndicatorId = `typing-${chatId}`;
-      console.log(typingIndicatorId)
       setMessages((prev) => [
          ...prev,
          {
@@ -113,14 +109,6 @@ export const ChatProvider: FC<{ children: React.ReactNode }> = ({
    const sendMessage = async (text: string) => {
       let currentChatId = chatId;
 
-      if (messages.length === 1) {
-         currentChatId = await createChat();
-      }
-
-      if (entities.length > 0) {
-         setEntities([]);
-      }
-
       setMessages((prev) => [
          ...prev,
          {
@@ -132,6 +120,14 @@ export const ChatProvider: FC<{ children: React.ReactNode }> = ({
          },
       ]);
 
+      if (messages.length === 1) {
+         currentChatId = await createChat();
+      }
+
+      if (entities.length > 0) {
+         setEntities([]);
+      }
+
       await getMessageFromChat(currentChatId, text);
    };
 
@@ -141,8 +137,6 @@ export const ChatProvider: FC<{ children: React.ReactNode }> = ({
       setEntities([]);
       setShowDescription(false);
    };
-
-   
 
    return (
       <ChatContext.Provider

@@ -122,7 +122,6 @@ const ChatMessages: React.FC = () => {
       }
    };
 
-   console.log(messages);
 
    return (
       <div className="flex flex-col gap-6 lg:text-lg text-sm leading-7 overflow-y-auto max-h-[700px] w-full pr-2">

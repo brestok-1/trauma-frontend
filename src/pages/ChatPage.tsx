@@ -70,6 +70,38 @@ const ChatPage = () => {
    const isLoggedIn = !!Cookies.get("accessToken");
    const filteredEntities = entities.filter((item) => item !== selectedEntity);
 
+   const [currentPage, setCurrentPage] = useState<number>(1);
+   const [itemsPerPage, setItemsPerPage] = useState<number>(
+      window.innerWidth > 1800 ? 5 : 6
+   );
+
+   useEffect(() => {
+      const updateItemsPerPage = () => {
+         setItemsPerPage(window.innerWidth > 1800 ? 5 : 6);
+         setCurrentPage(1);
+      };
+
+      window.addEventListener("resize", updateItemsPerPage);
+      return () => window.removeEventListener("resize", updateItemsPerPage);
+   }, []);
+
+   const startIndex: number = (currentPage - 1) * itemsPerPage;
+   const endIndex: number = startIndex + itemsPerPage;
+
+   const paginatedEntities: Entity[] = filteredEntities.slice(
+      startIndex,
+      endIndex
+   );
+   const totalPages: number = Math.ceil(filteredEntities.length / itemsPerPage);
+
+   const nextPage = (): void => {
+      if (currentPage < totalPages) setCurrentPage((prev) => prev + 1);
+   };
+
+   const prevPage = (): void => {
+      if (currentPage > 1) setCurrentPage((prev) => prev - 1);
+   };
+
    return (
       <div className="h-full px-5 xl:px-0 md:max-w-[80%] lg:max-w-[70%] xl:max-w-[55%] w-full mx-auto py-10">
          <button
@@ -107,7 +139,7 @@ const ChatPage = () => {
                </div>
             )}
             <ChatCardList
-               items={filteredEntities}
+               items={paginatedEntities}
                renderItem={(item) => (
                   <div
                      key={item.id}
@@ -118,6 +150,52 @@ const ChatPage = () => {
                   </div>
                )}
             />
+            {paginatedEntities.length > 0 && (
+               <>
+                  <div className="flex justify-between items-center gap-4">
+                     <button
+                        onClick={prevPage}
+                        disabled={currentPage === 1}
+                        className="p-2 bg-gray-200 rounded disabled:opacity-50"
+                     >
+                        <svg
+                           xmlns="http://www.w3.org/2000/svg"
+                           fill="none"
+                           viewBox="0 0 24 24"
+                           strokeWidth={1.5}
+                           stroke="currentColor"
+                           className="size-6"
+                        >
+                           <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M15.75 19.5 8.25 12l7.5-7.5"
+                           />
+                        </svg>
+                     </button>
+                     <button
+                        onClick={nextPage}
+                        disabled={currentPage === totalPages}
+                        className="p-2 bg-gray-200 rounded disabled:opacity-50"
+                     >
+                        <svg
+                           xmlns="http://www.w3.org/2000/svg"
+                           fill="none"
+                           viewBox="0 0 24 24"
+                           strokeWidth={1.5}
+                           stroke="currentColor"
+                           className="size-6"
+                        >
+                           <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="m8.25 4.5 7.5 7.5-7.5 7.5"
+                           />
+                        </svg>
+                     </button>
+                  </div>
+               </>
+            )}
             <ChatInput />
          </div>
          <PopUp isOpen={isPopupOpen} onClose={handleClosePopup} hideHeader>
