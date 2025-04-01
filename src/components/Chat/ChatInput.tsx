@@ -29,7 +29,7 @@ const ChatInput: React.FC = () => {
     <div className="bg-[#F9F9F9] flex flex-col border border-[#E9E9E9]">
       <textarea
         className="p-4 bg-[#F9F9F9] resize-none text-[17px] outline-none text-[#444444] h-36"
-        placeholder="Your message..."
+        placeholder="Jouw bericht.."
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         onKeyDown={handleKeyDown}
