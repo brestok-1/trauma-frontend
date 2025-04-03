@@ -1,22 +1,29 @@
 import { FormEvent, useState } from "react";
-import { loginUser } from "../api/securityApi";
-import { useNavigate } from "react-router-dom";
+import { loginUser, registerUser } from "../api/securityApi";
+import { useLocation, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import { Link } from "react-router-dom";
 
 interface Errors {
    email: boolean;
    password: boolean;
+   role?: boolean;
 }
 
 const SignInPage = () => {
    const navigate = useNavigate();
+   const location = useLocation();
+   const isRegister = location.pathname.includes("register");
+
    const [showPassword, setShowPassword] = useState<boolean>(false);
    const [email, setEmail] = useState<string>("");
    const [password, setPassword] = useState<string>("");
+   const [role, setRole] = useState<string>("");
    const [error, setError] = useState<string>("");
    const [errors, setErrors] = useState<Errors>({
       email: false,
       password: false,
+      role: false,
    });
 
    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -25,6 +32,7 @@ const SignInPage = () => {
       const newErrors: Errors = {
          email: !email,
          password: !password,
+         ...(isRegister && { role: !role }),
       };
 
       setErrors(newErrors);
@@ -36,24 +44,33 @@ const SignInPage = () => {
 
       setError("");
       try {
-         const result = await loginUser(email, password);
-
-         if (result.successful) {
-            const { accessToken } = result.data || {};
-
-            if (accessToken) {
-               Cookies.set("accessToken", accessToken.value, {
-                  expires: 30,
-                  path: "/",
-               });
+         if (isRegister) {
+            const result = await registerUser(email, password, role);
+            if (result.successful) {
+               navigate("/auth/login");
             } else {
-               setError("Access token is missing.");
-               return;
+               setError(result.error?.message || "Registration failed.");
             }
-
-            navigate("/", { state: { showPopup: true } });
          } else {
-            setError(result.error?.message || "Authentication failed.");
+            const result = await loginUser(email, password);
+
+            if (result.successful) {
+               const { accessToken } = result.data || {};
+
+               if (accessToken) {
+                  Cookies.set("accessToken", accessToken.value, {
+                     expires: 30,
+                     path: "/",
+                  });
+               } else {
+                  setError("Access token is missing.");
+                  return;
+               }
+
+               navigate("/", { state: { showPopup: true } });
+            } else {
+               setError(result.error?.message || "Authentication failed.");
+            }
          }
       } catch (error: unknown) {
          if (error instanceof Error) {
@@ -71,7 +88,7 @@ const SignInPage = () => {
             className="flex flex-col gap-y-4 py-4 md:px-4 w-[70%] md:w-1/3 xl:w-[30%]"
          >
             <p className="text-transparent text-center bg-clip-text bg-text-gradient p-2 font-extrabold mb-4 text-2xl md:text-3xl lg:text-4xl">
-               Log in
+               {isRegister ? "Registratie" : "Inloggen"}
             </p>
             <div className="relative mb-4 flex items-center border rounded-sm">
                <div className="px-3 py-2 flex items-center">
@@ -95,7 +112,7 @@ const SignInPage = () => {
                   className={`w-full p-2 pl-3 outline-none ${
                      errors.email || error ? "bg-red-500 bg-opacity-30" : ""
                   }`}
-                  placeholder="Email"
+                  placeholder="E-mail"
                   type="email"
                   value={email}
                   required
@@ -172,13 +189,66 @@ const SignInPage = () => {
                   )}
                </button>
             </div>
+            {isRegister && (
+               <div className="relative mb-4 flex items-center border rounded-sm">
+                  <div className="px-3 py-2 flex items-center">
+                     <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="size-5 text-gray-400"
+                     >
+                        <path
+                           strokeLinecap="round"
+                           strokeLinejoin="round"
+                           d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                        />
+                     </svg>
+                  </div>
+                  <div className="h-7 w-[1px] bg-gray-300"></div>
+                  <input
+                     className={`w-full p-2 pl-3 outline-none ${
+                        errors.role || error ? "bg-red-500 bg-opacity-30" : ""
+                     }`}
+                     placeholder="Rol"
+                     type="text"
+                     value={role}
+                     required
+                     onChange={(e) => setRole(e.target.value)}
+                  />
+               </div>
+            )}
             {error && (
                <p className="text-red-600 text-sm text-center">{error}</p>
             )}
 
             <button className="p-2 text-lg font-semibold hover:bg-orange-600 duration-300 bg-[#EF6F28] text-white rounded-sm">
-               Inloggen
+               {isRegister ? "Registratie" : "Inloggen"}
             </button>
+
+            {isRegister ? (
+               <p className="text-center text-gray-600">
+                  Al een account?{" "}
+                  <Link
+                     to="/auth/login"
+                     className="hover:text-orange-500 hover:underline"
+                  >
+                     Log hier in
+                  </Link>
+               </p>
+            ) : (
+               <p className="text-center text-gray-600">
+                  Nog geen account?{" "}
+                  <Link
+                     to="/auth/register"
+                     className="hover:text-orange-500 hover:underline"
+                  >
+                     Registreer hier
+                  </Link>
+               </p>
+            )}
          </form>
       </div>
    );

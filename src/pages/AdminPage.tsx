@@ -43,6 +43,7 @@ const AdminPage = () => {
                second: "2-digit",
             }).format(new Date(value as string)),
       },
+      { key: "role", title: "Role"}
    ];
 
    const handleCreateUser = async (email: string, password: string) => {

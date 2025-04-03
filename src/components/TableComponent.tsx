@@ -50,7 +50,7 @@ const TableComponent = <T extends { id: string }>({
       <div className="text-center shadow-md bg-white p-4">
          <div className="overflow-x-auto">
             <div className="min-w-max">
-               <div className="grid grid-cols-3 mb-2 text-gray-700 font-semibold">
+               <div className="grid grid-cols-4 mb-2 text-gray-700 font-semibold">
                   {columns.map((col, index) => (
                      <div key={index} className="p-4">
                         {col.title}
@@ -65,12 +65,12 @@ const TableComponent = <T extends { id: string }>({
                      data.map((row) => (
                         <div
                            key={row.id}
-                           className="grid grid-cols-3 border rounded-2xl hover:bg-gray-50 transition"
+                           className="grid grid-cols-4 border rounded-2xl hover:bg-gray-50 transition"
                         >
                            {columns.map((col, colIndex) => {
                               const content = col.render
                                  ? col.render(row[col.key], row)
-                                 : (row[col.key] as React.ReactNode);
+                                 : (row[col.key] as React.ReactNode ?? "-");
                               return (
                                  <div
                                     key={colIndex}

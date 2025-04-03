@@ -29,6 +29,14 @@ function App() {
             }
          />
          <Route
+            path="/auth/register"
+            element={
+               <ChatProvider>
+                  <SignInPage />
+               </ChatProvider>
+            }
+         />
+         <Route
             path="/admin"
             element={
                <ProtectedRoute>

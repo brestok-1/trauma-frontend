@@ -16,6 +16,7 @@ export interface GetAllAccountsResponse {
  export interface AccountsData {
     id: string;
     email: string;
+    role: string;
     accountType: number;
     datetimeInserted: string;
     datetimeUpdated: string;
